@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="André Bontempo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <!-- Título da Página -->
+    <title>Flora - 2025</title>
+    <meta name="description" content="Site da Central">
+    <meta name="keywords" content="Serviços de TI, CST">
+    <meta name="robots" content="index">
+    <meta name="author" content="André Bontempo">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/icon.png">
+  </head>
+
+  <!-- BODY -->
+  <!-- HEADER -->
+  <body class="container">
+
+    <!--**************************************************HEADER*****************************************************************************-->
+    <header class="cabecalho">
+      <h2>Flora/2025 - Embrapa</h2>
+      <h3>Google Cloud Plataform & IA Generativa</h3>
+      <h5>André Bontempo / Gabriel Nogueira / Glauber Silva / Lucas Nunes</h5>
+      <h4>Ambiente de Homologação</h4>
+    </header>
+    <!--**************************************************/HEADER*****************************************************************************-->
+
+    <!--**************************************************CONTEÚDO*****************************************************************************-->
+          <div class="caixa">
+            <h2>Flora - Fluxo - Migração para o GCP</h2>
+            <h3>
+              O Widget deve aparecer no canto inferior e à direita da tela.
+            </h3>
+            <a href="index.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Menu</a>
+          </div>
+
+        </br>
+        </br>
+        </br>
+		
+		<script>
+		  window.addEventListener('dfMessengerLoaded', function (event) {
+			const dfMessenger = document.querySelector('df-messenger');
+
+			// Defina a variável que deseja enviar
+			const minhaVariavel = "Valor que desejo enviar"; 
+
+			// Aguarde um pequeno atraso para garantir que o chatbot esteja carregado
+			setTimeout(() => {
+			  dfMessenger.sendMessage("", {
+				event: {
+				  name: "capturar_variavel", // Nome do evento no Dialogflow CX
+				  parameters: {
+					minhaVariavel: minhaVariavel // Envia a variável corretamente
+				  },
+				  languageCode: "pt-br"
+				}
+			  });
+			}, 1000); // Espera 1 segundo antes de enviar
+		  });
+		</script>
+
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+<df-messenger
+  location="us-central1"
+  project-id="pilotoflora"
+  agent-id="50e2cdc8-4514-43af-b83b-4cdbe46a516a"
+  language-code="pt-br"
+  max-query-length="-1"
+  df-messenger-init="initChat()"
+  >
+  <df-messenger-chat-bubble
+    chat-title="Flora - 901 - Variaveis">
+  </df-messenger-chat-bubble>
+</df-messenger>
+
+ <script>
+    function initChat() {
+      const dfMessenger = document.querySelector('df-messenger');
+      const userName = 'Nome do Usuário'; // Substitua pelo nome real do usuário
+      const userEmail = 'email@exemplo.com'; // Substitua pelo e-mail real do usuário
+
+      // Disparando o evento personalizado 'dados_usuario' com os parâmetros 'nome' e 'email'
+      dfMessenger.renderCustomEvent('dados_usuario', {
+        nome: userName,
+        email: userEmail
+      });
+    }
+  </script>
+
+
+
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
+
+
+		
+		
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

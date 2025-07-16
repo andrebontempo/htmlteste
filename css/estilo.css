@@ -1,0 +1,106 @@
+/*================RESET===================*/
+* {
+margin: 0;
+padding: 0; 
+font-size: 100%;
+border: none;
+outline: none;
+font-weight: 300; 
+box-sizing: border-box;
+}
+body {
+background-color: #eee;
+position: relative;
+/*background: url(../img/fundo.jpg);*/
+}
+a {
+text-decoration: none;
+}
+ul {
+list-style: none;	
+}
+img {
+max-width: 100%;	
+}
+
+/*================HEADER===================*/
+
+.cabecalho {
+	width: 100%;
+	font-size: 2em;
+	background-color: black;
+	color:white;
+	text-align: center;
+	border-radius: 15px;
+	border: 2px solid white;
+	margin: 15px 0px 15px 0px;
+	padding: 2% 2%;
+	float: left;
+}
+.cabecalho h1 {
+	margin-left: 30px;
+}
+.cabecalho h2 {
+	font-size: 2.2em;
+}
+.logo {
+	width: 150px;
+	height: 150px;
+	float: left;
+	background: url(../img/icon.png) center center/155px no-repeat;
+	border-radius: 150px;
+	font-size:0;
+	border: 2px solid white;
+}
+
+/*================CONTEÚDO===================*/
+.caixa{
+	width: 100%;
+	float: left;
+	background-color: #fff; 
+	text-align: center;
+	border-radius: 7px;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+.otrss {
+	width: 100%;
+	float: left;
+	margin-bottom: 40px;
+}
+
+.otrs {
+	max-width: 49%;
+	float: left;
+	background-color: #fff; 
+	text-align: center;
+	border-radius: 7px;
+	margin:5px;
+}
+.otrs h2 {
+	text-align: center;
+	margin-top: 15px;
+}
+.otrs img {
+	border-radius: 15px;
+	padding: 10px;
+	height: 250px;
+}
+
+.inner {
+	padding:  5%;
+}
+.inner a {
+	font-size: 1.5em;
+	/*color: green;*/
+	font-weight: 700;
+}
+.inner p {
+	text-align: left;
+	margin-top: 15px;
+}
+/*================DICAS===================*/
+.dicas {
+	
+}
