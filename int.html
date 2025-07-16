@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flora - Assistente Virtual da Embrapa</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+      .container {
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .hidden {
+        display: none;
+      }
+      .tela-inicial {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .tela-inicial img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+      .tela-inicial h2 {
+        margin: 10px 0 5px;
+      }
+      .tela-inicial p {
+        margin: 10px 0;
+      }
+      .tela-inicial button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #09184f;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .header {
+        background-color: #09184f;
+        color: white;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .header img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+      .header-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .header-info strong {
+        font-size: 14px;
+      }
+      .header-info span {
+        font-size: 12px;
+        color: #a4ffac;
+      }
+      #chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+        background-color: #fdfdfd;
+      }
+      .msg {
+        margin-bottom: 10px;
+      }
+      .msg.user {
+        text-align: right;
+        color: #0b256d;
+      }
+      .msg.bot {
+        text-align: left;
+        color: #333;
+      }
+      .input-area {
+        flex-shrink: 0;
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: white;
+      }
+      .input-area input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      .input-area button {
+        padding: 10px 20px;
+        border: none;
+        background: #09184f;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .input-area button:hover {
+        background: #0b256d;
+      }
+      @media (max-width: 768px) {
+        .container {
+          border-radius: 0;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Tela inicial -->
+      <div id="tela-inicial" class="tela-inicial">
+        <img
+          src="https://blipmediastore.blip.ai/public-medias/Media_9fde99bb-2dd0-483d-8f16-9cc2db271289"
+          alt="Flora"
+        />
+        <h2>Flora <span style="color: green">online</span></h2>
+        <p>
+          Olá, <strong>{{ $json.nome }}</strong>, que bom que você chegou!<br />
+          Eu sou a Flora, assistente virtual da Embrapa.<br /><br />
+          Atualmente posso ajudar com dúvidas sobre:<br />
+          <strong>Tecnologia da Informação</strong> (consultar e abrir
+          chamados),<br />
+          <strong>Gestão de Pessoas</strong> (contatos, localização, CNPJ),<br />
+          <strong>Ouvidoria</strong> (licitações, contratos, publicações),<br />
+          <strong>Normas e Planos</strong> (PCE, PDTI, PSI, ACT 24-26).
+        </p>
+        <button onclick="iniciarChat()">Vamos começar?</button>
+      </div>
+
+      <!-- Chat -->
+      <div
+        id="chatbox"
+        class="hidden"
+        style="display: flex; flex-direction: column; height: 100%"
+      >
+        <div class="header">
+          <img
+            src="https://blipmediastore.blip.ai/public-medias/Media_9fde99bb-2dd0-483d-8f16-9cc2db271289"
+            alt="Flora"
+          />
+          <div class="header-info">
+            <strong>Flora</strong>
+            <span>online</span>
+          </div>
+        </div>
+        <div id="chat"></div>
+        <div class="input-area">
+          <input
+            type="text"
+            id="mensagem"
+            placeholder="Digite sua pergunta..."
+            required
+          />
+          <button onclick="enviarPergunta()">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const nome = "{{ $json.nome }}"
+      const email = "{{ $json.email }}"
+      const matricula = "{{ $json.matricula }}"
+      const chatBox = document.getElementById("chat")
+      let loadingDiv = null
+
+      function iniciarChat() {
+        document.getElementById("tela-inicial").classList.add("hidden")
+        document.getElementById("chatbox").classList.remove("hidden")
+        adicionarMensagem(
+          "💬 Estou pronta para te ajudar. Faça sua pergunta!",
+          "bot"
+        )
+        scrollChat()
+      }
+
+      async function enviarPergunta() {
+        const input = document.getElementById("mensagem")
+        const pergunta = input.value.trim()
+        if (!pergunta) return
+
+        adicionarSeparadorHora()
+        adicionarMensagem(pergunta, "user")
+        input.value = ""
+        scrollChat()
+
+        loadingDiv = document.createElement("div")
+        loadingDiv.className = "msg bot"
+        loadingDiv.innerHTML = `<div class="bot">💬 Pensando...</div>`
+        chatBox.appendChild(loadingDiv)
+        scrollChat()
+
+        const params = new URLSearchParams({
+          nome,
+          email,
+          matricula,
+          mensagem: pergunta,
+        })
+
+        try {
+          const res = await fetch("/webhook/chat-pergunta?" + params.toString())
+          const respostaIA = await res.text()
+          loadingDiv.remove()
+          adicionarMensagem(respostaIA, "bot")
+        } catch (error) {
+          loadingDiv.remove()
+          adicionarMensagem("❌ Ocorreu um erro. Tente novamente.", "bot")
+        }
+
+        scrollChat()
+      }
+
+      function adicionarMensagem(texto, classe) {
+        const msgDiv = document.createElement("div")
+        msgDiv.className = "msg " + classe
+
+        // Converte Markdown para HTML (com proteção contra script)
+        const htmlConvertido = marked
+          .parse(texto || "")
+          .replace(/<script.*?>.*?<\/script>/gi, "")
+        msgDiv.innerHTML = `<div class="${classe}">${htmlConvertido}</div>`
+        chatBox.appendChild(msgDiv)
+      }
+
+      function adicionarSeparadorHora() {
+        const agora = new Date()
+        const hora = agora.toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        const sep = document.createElement("div")
+        sep.style.textAlign = "center"
+        sep.style.margin = "10px 0"
+        sep.style.color = "#999"
+        sep.textContent = "— " + hora + " —"
+        chatBox.appendChild(sep)
+      }
+
+      function scrollChat() {
+        chatBox.scrollTop = chatBox.scrollHeight
+      }
+
+      document
+        .getElementById("mensagem")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault()
+            enviarPergunta()
+          }
+        })
+    </script>
+  </body>
+</html>

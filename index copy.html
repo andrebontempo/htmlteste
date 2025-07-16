@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="André Bontempo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <!-- Título da Página -->
+    <title>Flora - 2025</title>
+    <meta name="description" content="Site da Central">
+    <meta name="keywords" content="Serviços de TI, CST">
+    <meta name="robots" content="index">
+    <meta name="author" content="André Bontempo">
+    <link rel="icon" href="img/icon.png">
+  </head>
+ 
+  
+  <!-- BODY -->
+  <!-- HEADER -->
+  <body class="container">
+
+    <!--**************************************************HEADER*****************************************************************************-->
+          <header class="cabecalho">
+            <h2>Flora/2025 - Embrapa</h2>
+            <h3>Google Cloud Plataform & IA Generativa</h3>
+            <h5>André Bontempo / Gabriel Nogueira / Glauber Silva / Lucas Nunes</h5>
+            <h4>Ambiente de Homologação</h4>
+          </header>
+    <!--**************************************************/HEADER*****************************************************************************-->
+
+    <!--**************************************************CONTEÚDO*****************************************************************************-->
+
+          <div class="caixa">
+            <h3>Flora - Frutas - 500 Perguntas e Respostas</h3>
+            <a href="index30.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div>
+          <div class="caixa">
+            <h3>Flora - GCP - Ageitec (Sem Conexão ainda)</h3>
+            <a href="" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div>
+          <div class="caixa">
+            <h3>Flora - Intranet - Migração para o GCP</h3>
+            <a href="index50.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div> 
+		  <div class="caixa">
+            <h3>Flora - ILPF - GCP</h3>
+            <a href="index60.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div> 
+		  <div class="caixa">
+            <h3>Flora - Fluxo - Migração para o GCP</h3>
+            <a href="index70.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div>	
+		  
+		  <div class="caixa">
+            <h3>Flora - Teste das Variáveis Externas</h3>
+            <a href="index80.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div>
+          
+       <div class="caixa">
+            <h3>Flora - Teste n8n</h3>
+            <a href="index90.html" class="btn btn-outline-dark btn-lg" role="button" aria-pressed="true">Acessar</a>
+          </div>   
+			
+        </br>
+        </br>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+  <!-- BOTÃO E IFRAME DO CHATBOT -->
+<style>
+  #chatbot-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #09184f;
+    border: none;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    z-index: 9999;
+    background-image: url("https://transfer.sede.embrapa.br/transfer/cst/chatbot/flora2025/Flora_Widget_003.png");
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  #chatbot-iframe {
+    display: none;
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 400px;
+    height: 560px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    z-index: 9998;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 768px) {
+    #chatbot-iframe {
+      width: 95%;
+      right: 2.5%;
+      height: 80%;
+      bottom: 90px;
+    }
+  }
+</style>
+
+<script type="text/javascript">
+  AUI().use("array-extras", function (A) {
+    ;(function () {
+      Liferay.Service(
+        [
+          {
+            "$user[userId,emailAddress,fullName] = /user/get-user-by-id": {
+              userId: Liferay.ThemeDisplay.getUserId(),
+            },
+          },
+        ],
+        function (obj) {
+          const userEmail = obj[0].emailAddress
+          const fullName = obj[0].fullName
+          const matricula = "123456" // Substitua por valor real se necessário
+
+          const chatbotUrl = `https://floxx-n8n.b.agro.rocks/webhook/chat?email=${encodeURIComponent(
+            userEmail
+          )}&nome=${encodeURIComponent(
+            fullName
+          )}&matricula=${encodeURIComponent(matricula)}`
+
+          // Cria o iframe
+          const iframe = document.createElement("iframe")
+          iframe.id = "chatbot-iframe"
+          iframe.src = chatbotUrl
+          document.body.appendChild(iframe)
+
+          // Cria o botão
+          const button = document.createElement("button")
+          button.id = "chatbot-button"
+          button.onclick = function () {
+            const iframe = document.getElementById("chatbot-iframe")
+            iframe.style.display =
+              iframe.style.display === "none" || !iframe.style.display
+                ? "block"
+                : "none"
+          }
+          document.body.appendChild(button)
+        }
+      )
+    })()
+  })
+</script>
+  
+  </body>
+</html>
